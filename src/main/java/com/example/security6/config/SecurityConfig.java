@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig {
 
     private final UserService userService;
     @Value("${security.jwt.secretKey}")
