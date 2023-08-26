@@ -1,14 +1,14 @@
 package com.example.security6.repository;
 
-import com.example.security6.domain.entity.Member;
+import com.example.security6.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<Member> findByUserId(String userId);
+    Optional<User> findByUserId(String userId);
 
 }

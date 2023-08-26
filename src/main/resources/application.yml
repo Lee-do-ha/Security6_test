@@ -4,3 +4,11 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+security:
+  jwt:
+    secretKey : springboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TESTspringboot3springsecurity6TEST

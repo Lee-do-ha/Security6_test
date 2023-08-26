@@ -1,7 +1,7 @@
 package com.example.security6.controller;
 
-import com.example.security6.domain.dto.member.RequestDto;
-import com.example.security6.service.MemberService;
+import com.example.security6.domain.dto.user.RequestDto;
+import com.example.security6.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody RequestDto requestDto){
 
-        memberService.save(requestDto);
+        userService.save(requestDto);
 
         return ResponseEntity.ok().body("회원가입 성공");
     }

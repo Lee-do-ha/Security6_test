@@ -1,4 +1,4 @@
-package com.example.security6.domain.dto.member;
+package com.example.security6.domain.dto.user;
 
 import lombok.Getter;
 
