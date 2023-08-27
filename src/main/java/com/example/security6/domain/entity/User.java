@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Builder
@@ -23,6 +29,13 @@ public class User {
 
     @Column(nullable = false)
     private String userPassword;
+
+    @CreatedDate
+    private LocalDate createDat;
+
+    @LastModifiedDate
+    private LocalDate modifyDat;
+
 
     public String getUserId() {
         return userId;
