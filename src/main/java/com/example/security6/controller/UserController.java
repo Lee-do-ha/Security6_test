@@ -25,14 +25,14 @@ public class UserController {
         return ResponseEntity.ok().body("회원가입 성공");
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
 
         String token = userService.login(loginDto);
 
         log.info("로그인 성공");
 
-        return ResponseEntity.ok().body("로그인 성공" + token);
+        return ResponseEntity.ok().body("로그인 성공 " + token);
     }
 
 }

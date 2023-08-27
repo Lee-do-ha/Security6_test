@@ -8,6 +8,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.crypto.spec.SecretKeySpec;
+
 @Slf4j
 public class JwtUtil {
 
@@ -43,7 +45,7 @@ public class JwtUtil {
                 // 토큰 만료 시간 설정
                 .setExpiration(new Date(System.currentTimeMillis() + expireTime))
                 // secretKey로 토큰 암호화
-                .signWith(SignatureAlgorithm.HS256, key)
+                .signWith(new SecretKeySpec(key.getBytes(), SignatureAlgorithm.HS256.getJcaName()))
                 .compact();
 
     }
