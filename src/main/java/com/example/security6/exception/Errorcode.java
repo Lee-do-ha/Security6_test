@@ -6,9 +6,10 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum Errorcode {
 
-    USERID_DUPLICATED(HttpStatus.CONFLICT, "중복된 아이디입니다.")
+    USER_ID_DUPLICATED(HttpStatus.CONFLICT),
+    USER_ID_NOT_FOUND(HttpStatus.NOT_FOUND),
+    USER_PASSWORD_ERROR(HttpStatus.NOT_ACCEPTABLE)
     ;
 
     private HttpStatus httpStatus;
-    private String message;
 }

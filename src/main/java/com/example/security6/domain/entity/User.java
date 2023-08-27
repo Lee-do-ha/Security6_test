@@ -1,8 +1,10 @@
 package com.example.security6.domain.entity;
 
+import com.example.security6.domain.dto.BaseTime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,7 +17,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@Getter
+public class User extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +33,4 @@ public class User {
     @Column(nullable = false)
     private String userPassword;
 
-    @CreatedDate
-    private LocalDate createDat;
-
-    @LastModifiedDate
-    private LocalDate modifyDat;
-
-
-    public String getUserId() {
-        return userId;
-    }
 }
