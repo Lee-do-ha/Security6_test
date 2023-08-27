@@ -21,7 +21,7 @@ public class UserService {
         // 회원가입 아이디 중복 방지
         Optional<User> optionalMember = userRepository.findByUserId(requestDto.getUserId());
 
-        if(!optionalMember.isPresent()){
+        if(optionalMember.isPresent()){
             throw new RuntimeException("사용 할 수 없는 아이디입니다.");
         }
 
