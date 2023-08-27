@@ -47,6 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 아이디 추출
         String userId = JwtUtil.getUserId(token, SecretKey);
+        log.info("userId = " + userId);
 
         // 권한 부여
         UsernamePasswordAuthenticationToken authenticationToken

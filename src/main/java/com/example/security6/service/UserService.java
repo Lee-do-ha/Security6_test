@@ -3,6 +3,7 @@ package com.example.security6.service;
 import com.example.security6.config.EncoderConfig;
 import com.example.security6.domain.dto.user.JoinDto;
 import com.example.security6.domain.dto.user.LoginDto;
+import com.example.security6.domain.dto.user.ModifyDto;
 import com.example.security6.domain.entity.User;
 import com.example.security6.exception.AppException;
 import com.example.security6.exception.Errorcode;
@@ -12,11 +13,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -60,6 +63,22 @@ public class UserService {
         }
 
         return JwtUtil.createAccessToken(optionalUser.get().getUserId(), secretKey, expirationTime);
+
+    }
+
+    public void delete(String userId) {
+
+        User user = userRepository.findByUserId(userId).get();
+
+        userRepository.delete(user);
+
+    }
+
+    public void modify(String userId, ModifyDto modifyDto) {
+
+        User user = userRepository.findByUserId(userId).get();
+
+        user.setUserPassword(encoderConfig.EncoderPassword(modifyDto.getUserPassword()));
 
     }
 }

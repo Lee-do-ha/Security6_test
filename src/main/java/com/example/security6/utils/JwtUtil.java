@@ -45,7 +45,7 @@ public class JwtUtil {
                 // 토큰 만료 시간 설정
                 .setExpiration(new Date(System.currentTimeMillis() + expireTime))
                 // secretKey로 토큰 암호화
-                .signWith(new SecretKeySpec(key.getBytes(), SignatureAlgorithm.HS256.getJcaName()))
+                .signWith(new SecretKeySpec(key.getBytes(), SignatureAlgorithm.HS512.getJcaName()))
                 .compact();
 
     }
@@ -53,9 +53,10 @@ public class JwtUtil {
     // 토큰에서 아이디 정보 꺼내기
     public static String getUserId(String token, String key){
 
-        return Jwts.parser().setSigningKey(key).parseClaimsJws(token)
+        return Jwts.parser().setSigningKey(key.getBytes()).parseClaimsJws(token)
                 .getBody()
                 .get("userId", String.class);
 
     }
+
 }

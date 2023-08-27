@@ -33,4 +33,7 @@ public class User extends BaseTime {
     @Column(nullable = false)
     private String userPassword;
 
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 }
