@@ -9,6 +9,7 @@ import com.example.security6.exception.Errorcode;
 import com.example.security6.repository.UserRepository;
 import com.example.security6.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,10 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final EncoderConfig encoderConfig;
+    @Value("${security.jwt.secretKey}")
+    private String secretKey;
+    // 토큰 기간 일주일
+    private Long expirationTime = 60 * 60 * 24 * 7L;
 
     public void save(JoinDto joinDto){
 
@@ -40,19 +45,21 @@ public class UserService {
 
     }
 
-    public void login(LoginDto loginDto){
+    public String login(LoginDto loginDto){
 
         Optional<User> optionalUser = userRepository.findByUserId(loginDto.getUserId());
 
         // 회원가입된 아이디인지 확인
         if(!optionalUser.isPresent()){
-            throw new AppException(Errorcode.USER_ID_NOT_FOUND, "아이디를 다시 확인해주세요");
+            throw new AppException(Errorcode.USER_ID_NOT_FOUND, "존재하지 않는 아이디입니다.");
         }
 
         // 비밀번호 확인
         if(!BCrypt.checkpw(loginDto.getUserPassword(), optionalUser.get().getUserPassword())){
-            throw new AppException(Errorcode.USER_PASSWORD_ERROR, "비밀번호를 다시 확인해주세요");
+            throw new AppException(Errorcode.USER_PASSWORD_ERROR, "옳지 않은 비밀번호 입니다.");
         }
+
+        return JwtUtil.createAccessToken(optionalUser.get().getUserId(), secretKey, expirationTime);
 
     }
 }

@@ -1,15 +1,18 @@
 package com.example.security6.exception;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
+@Getter
 public enum Errorcode {
 
-    USER_ID_DUPLICATED(HttpStatus.CONFLICT),
-    USER_ID_NOT_FOUND(HttpStatus.NOT_FOUND),
-    USER_PASSWORD_ERROR(HttpStatus.NOT_ACCEPTABLE)
+    USER_ID_DUPLICATED(HttpStatus.CONFLICT, ""),
+    USER_ID_NOT_FOUND(HttpStatus.NOT_FOUND, ""),
+    USER_PASSWORD_ERROR(HttpStatus.CONFLICT, "")
     ;
 
     private HttpStatus httpStatus;
+    private String message;
 }

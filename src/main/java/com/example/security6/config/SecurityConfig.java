@@ -30,10 +30,9 @@ public class SecurityConfig {
                         SessionCreationPolicy.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequest ->
                         authorizeHttpRequest
-                                .requestMatchers("/api/v1/user/login").permitAll()
-                                .requestMatchers("/api/v1/user/join").permitAll()
+                                .requestMatchers("/api/v1/user/login", "/api/v1/user/join").permitAll()
                                 .anyRequest().authenticated())
-                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

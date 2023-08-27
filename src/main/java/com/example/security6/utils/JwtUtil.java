@@ -6,8 +6,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 public class JwtUtil {
 
     // 토큰 기간 만료 체크
@@ -26,6 +27,8 @@ public class JwtUtil {
 
     // 토큰 생성
     public static String createAccessToken(String userId, String key, Long expireTime){
+
+        log.info("토큰 생성 시작");
 
         // 토큰에 담을 정보
         // claims = 토큰에 저장할 일종의 map
