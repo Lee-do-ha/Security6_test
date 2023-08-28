@@ -1,5 +1,7 @@
 package com.example.security6.domain.entity;
 
+import com.example.security6.domain.dto.BaseTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,15 +10,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Board {
+@Getter
+public class Board extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "boardAuthor")
-    private User boardAuthor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    @JsonIgnore
+    private User user;
 
     @Column(nullable = false)
     private String boardTitle;

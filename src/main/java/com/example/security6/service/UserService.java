@@ -81,4 +81,10 @@ public class UserService {
         user.setUserPassword(encoderConfig.EncoderPassword(modifyDto.getUserPassword()));
 
     }
+
+    public Optional<User> findByUserId(String userId){
+
+        return userRepository.findByUserId(userId);
+
+    }
 }

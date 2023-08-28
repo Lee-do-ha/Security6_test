@@ -2,10 +2,7 @@ package com.example.security6.domain.entity;
 
 import com.example.security6.domain.dto.BaseTime;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,10 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@ToString
 public class User extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -39,6 +38,10 @@ public class User extends BaseTime {
         this.userPassword = userPassword;
     }
 
-    @OneToMany(mappedBy = "boardAuthor")
-    private List<Board> boards = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Board> boardList = new ArrayList<>();
+
+    public List<Board> getBoardList() {
+        return boardList;
+    }
 }

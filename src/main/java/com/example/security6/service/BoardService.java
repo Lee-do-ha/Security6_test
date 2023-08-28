@@ -8,20 +8,23 @@ import com.example.security6.repository.BoardRepository;
 import com.example.security6.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BoardService {
 
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     public void save(JoinDto joinDto, String userId){
 
         Board board = Board.builder()
-                .boardAuthor(userRepository.findByUserId(userId).get())
+                .user(userRepository.findByUserId(userId).get())
                 .boardContent(joinDto.getContent())
                 .boardTitle(joinDto.getTitle())
                 .boardView(0L)
@@ -38,6 +41,13 @@ public class BoardService {
         if(list.isEmpty()){
             throw new AppException(Errorcode.BOARD_LIST_NOT_FOUND, " 게시글이 존재하지 않습니다.");
         }
+
+        return list;
+    }
+
+    public List<Board> getMyList(String userId){
+
+        List<Board> list = userRepository.findByUserId(userId).get().getBoardList();
 
         return list;
     }
