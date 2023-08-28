@@ -1,9 +1,6 @@
 package com.example.security6.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -19,8 +16,14 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String boardAuthor;
+    @ManyToOne
+    @JoinColumn(name = "boardAuthor")
+    private User boardAuthor;
+
+    @Column(nullable = false)
     private String boardTitle;
+
+    @Column(nullable = false)
     private String boardContent;
     private Long boardView;
 

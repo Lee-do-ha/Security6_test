@@ -11,7 +11,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "users")
 @Builder
@@ -36,4 +38,7 @@ public class User extends BaseTime {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+    @OneToMany(mappedBy = "boardAuthor")
+    private List<Board> boards = new ArrayList<>();
 }
