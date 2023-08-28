@@ -10,7 +10,8 @@ public enum Errorcode {
 
     USER_ID_DUPLICATED(HttpStatus.CONFLICT, ""),
     USER_ID_NOT_FOUND(HttpStatus.NOT_FOUND, ""),
-    USER_PASSWORD_ERROR(HttpStatus.CONFLICT, "")
+    USER_PASSWORD_ERROR(HttpStatus.CONFLICT, ""),
+    BOARD_LIST_NOT_FOUND(HttpStatus.NOT_FOUND, "")
     ;
 
     private HttpStatus httpStatus;

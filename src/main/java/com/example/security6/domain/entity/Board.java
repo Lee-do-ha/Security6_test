@@ -1,15 +1,13 @@
 package com.example.security6.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity(name = "boards")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Board {
 
     @Id
