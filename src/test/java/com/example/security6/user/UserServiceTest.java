@@ -74,7 +74,10 @@ public class UserServiceTest {
                 .userPassword("testPassword")
                 .build();
 
-        userService.login(loginDto);
+        String token = userService.login(loginDto);
+
+        System.out.println("로그인 성공");
+        System.out.println(token);
     }
 
     @Test
