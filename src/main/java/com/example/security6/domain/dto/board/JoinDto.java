@@ -1,7 +1,9 @@
 package com.example.security6.domain.dto.board;
 
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 public class JoinDto {
 
     private String title;
