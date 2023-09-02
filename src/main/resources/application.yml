@@ -1,3 +1,4 @@
+# 데이터베이스 연결
 spring:
   datasource:
     driver-class-name: org.h2.Driver
@@ -9,7 +10,25 @@ spring:
       ddl-auto: update
     show-sql: true
 
-
+# jwt 개인키
 security:
   jwt:
     secretKey: SpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TESTSpringBoot3Security6TEST
+
+# 이메일 인증 관련
+mail:
+  smtp:
+    auth: true
+    port: 465
+    socketFactory:
+      class: javax.net.ssl.SSLSocketFactory
+      fallback: false
+      port: 465
+    starttls:
+      required: true
+      enable: true
+
+
+admin:
+  id: victoryddh
+  password: ccppzijdnraxqzhb
