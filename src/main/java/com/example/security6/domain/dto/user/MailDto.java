@@ -3,7 +3,7 @@ package com.example.security6.domain.dto.user;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter @Getter
+@Getter
 public class MailDto {
 
     String mail;
