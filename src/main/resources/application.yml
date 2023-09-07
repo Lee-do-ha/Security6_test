@@ -10,6 +10,18 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  # 구글 로그인
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 385042863793-qlrrdmlcs44js199mq6eivmtd01i24kg.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
 # jwt 개인키
 security:
   jwt:
