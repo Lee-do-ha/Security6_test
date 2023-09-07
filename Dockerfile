@@ -1,5 +1,5 @@
 # 자바 버전 17로 설정
-FROM brody/openjdk17-alpine
+FROM openjdk:17-alpine
 
 # JAR_FILE 이란 변수로 jar파일 설정
 ARG JAR_FILE=/build/libs/*.jar
